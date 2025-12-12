@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raed Azzam | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              primary: '#6366f1', // Indigo 500 for accents
+              dark: '#000000', // Pure Black
+              zinc: {
+                800: '#27272a',
+                900: '#18181b',
+                950: '#09090b',
+              }
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'scroll-wheel': 'scroll 1.5s infinite',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            },
+            keyframes: {
+              scroll: {
+                '0%': { transform: 'translateY(0)', opacity: '1' },
+                '100%': { transform: 'translateY(15px)', opacity: '0' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #000000;
+        color: #ffffff;
+      }
+      /* Modern Grid Background */
+      .bg-grid {
+        background-size: 40px 40px;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      }
+      .glass {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      
+      /* Outline Text Base */
+      .text-outline {
+        color: transparent;
+        -webkit-text-stroke: 2px #6366f1;
+        transition: all 0.1s;
+      }
+      
+      /* Active Neon State - Softened */
+      .neon-active {
+        color: transparent; 
+        /* Thinner, softer stroke color (Indigo 400 with opacity) */
+        -webkit-text-stroke: 2px rgba(129, 140, 248, 0.8); 
+        /* Much softer glow, less spread */
+        text-shadow: 
+          0 0 5px rgba(99, 102, 241, 0.4),
+          0 0 15px rgba(99, 102, 241, 0.2); 
+      }
+
+      /* Short Circuit / Off State */
+      .neon-off {
+        color: transparent;
+        -webkit-text-stroke: 2px #312e81; /* Dark indigo */
+        text-shadow: none;
+        opacity: 0.2;
+      }
+
+      /* Code Spark Particle */
+      .code-spark {
+        position: absolute;
+        font-family: monospace;
+        font-weight: bold;
+        color: #a5b4fc; /* Light indigo */
+        pointer-events: none;
+        font-size: 1.5rem;
+        user-select: none;
+        text-shadow: 0 0 5px #6366f1;
+        z-index: 20;
+      }
+
+      @keyframes spark-fly {
+        0% {
+          transform: translate(-50%, -50%) scale(0.5);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--rot));
+          opacity: 0;
+        }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #09090b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3f3f46; 
+        border-radius: 5px;
+        border: 2px solid #09090b;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #6366f1; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-black text-white font-sans antialiased selection:bg-indigo-500 selection:text-white">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
