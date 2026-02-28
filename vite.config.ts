@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/Ra-ed-Azzam/", // Set to your repository name
+  base: "/", // Set to your repository name or "/" for root domain
   build: {
     rollupOptions: {
       output: {
