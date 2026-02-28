@@ -1,11 +1,20 @@
 import { GoogleGenAI, Chat } from "@google/genai";
 import { AI_SYSTEM_INSTRUCTION } from "../constants";
 
-const apiKey = process.env.API_KEY || '';
+// Safe API key access for Vite environment
+const getApiKey = () => {
+  try {
+    // Check for Vite environment variables first
+    return import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY || '';
+  } catch (e) {
+    return '';
+  }
+};
 
-// Initialize the client
-// We initialize the AI client instance directly. 
-const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+const apiKey = getApiKey();
+
+// Initialize the client safely
+const ai = apiKey && apiKey !== 'PLACEHOLDER_API_KEY' ? new GoogleGenAI({ apiKey }) : null;
 
 export const sendMessageToGemini = async (message: string, history: any[]): Promise<string> => {
   if (!ai) {

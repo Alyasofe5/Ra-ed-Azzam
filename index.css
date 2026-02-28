@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Since Tailwind is loaded via CDN in index.html, 
+  this file is primarily here to satisfy the build 
+  requirement and provide a place for any custom 
+  CSS that might be needed outside of Tailwind.
+*/

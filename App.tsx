@@ -7,13 +7,21 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AIChatBot from './components/AIChatBot';
 import SplashScreen from './components/SplashScreen';
+import AdminDashboard from './components/AdminDashboard';
+import AdminLogin from './components/AdminLogin';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'home' | 'projects' | 'contact'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'projects' | 'contact' | 'admin'>('home');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // Logic to handle page switching and scrolling
   const handleNavigation = (destination: string) => {
+    if (destination === 'admin') {
+      setCurrentPage('admin');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     if (destination === 'projects') {
       setCurrentPage('projects');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -43,7 +51,7 @@ function App() {
       ) : (
         <>
           <Navbar onNavigate={handleNavigation} currentPage={currentPage} />
-          
+
           <div className="animate-fade-in-up">
             <main>
               {currentPage === 'home' && (
@@ -58,11 +66,21 @@ function App() {
               {currentPage === 'contact' && (
                 <Contact onBack={() => handleNavigation('#hero')} />
               )}
+              {currentPage === 'admin' && (
+                isAuthenticated ? (
+                  <AdminDashboard onBack={() => handleNavigation('#hero')} />
+                ) : (
+                  <AdminLogin
+                    onLoginSuccess={() => setIsAuthenticated(true)}
+                    onBack={() => handleNavigation('#hero')}
+                  />
+                )
+              )}
             </main>
             {/* Show Footer only on Home, or generally. Here keeping it for consistency */}
             <Footer />
           </div>
-          
+
           <AIChatBot />
         </>
       )}
